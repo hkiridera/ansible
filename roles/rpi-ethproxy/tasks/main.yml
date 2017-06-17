@@ -1,0 +1,20 @@
+---
+- apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - git
+    - python-twisted
+    - screen
+  become: yes
+
+- git:
+    repo: https://github.com/Atrides/eth-proxy.git
+    dest: ~/eth-proxy
+    version: master 
+    force: no
+    update: no
+
+- template:
+    src: eth-proxy.conf
+    dest: ~/eth-proxy/eth-proxy.conf
