@@ -1,0 +1,12 @@
+---
+- name: install pip
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - python-pip
+    - python-dev
+
+- name: install chainer
+  pip:
+    name: chainer
