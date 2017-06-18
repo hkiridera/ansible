@@ -1,0 +1,15 @@
+---
+- name: docker deploy jenkins
+  docker_service:
+    project_name: jenkins
+    definition:
+      version: '2'
+      services:
+        jenkins:
+          image: jenkins
+          ports:
+            - 8080:8080
+            - 50000:50000
+          volumes:
+            - "/var/jenkins_home"
+            - "/etc/hosts:/etc/hosts"
