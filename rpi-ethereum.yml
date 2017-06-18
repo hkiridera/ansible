@@ -1,0 +1,4 @@
+---
+- hosts: rpi-ethereum
+  roles:
+   - rpi-ethereum

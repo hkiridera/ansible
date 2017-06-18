@@ -1,0 +1,64 @@
+---
+- name: install apt packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - software-properties-common
+    - git
+    - libboost-all-dev
+    - libleveldb-dev
+    - libcurl4-openssl-dev
+    - libmicrohttpd-dev
+    - libminiupnpc-dev
+    - libgmp-dev
+    - libgmp3-dev
+  become: yes
+
+
+- file:
+    path: ~/bin
+    state: directory
+    owner: pi
+    group: pi
+
+- get_url:
+    url: http://dave.cheney.net/paste/go1.4.linux-arm~armv7-1.tar.gz
+    dest: ~/bin/
+
+- shell: tar -xzvf go1.4.linux-arm~armv7-1.tar.gz
+  args:
+    chdir: ~/bin/
+    executable: /bin/bash
+
+- lineinfile:
+    line: "{{ item }}"
+    dest: /etc/bash.bashrc
+  with_items:
+    - export PATH=$PATH:/home/pi/bin/go/bin
+    - export GOROOT=/home/pi/bin/go
+  become: yes
+
+- git:
+    repo: https://github.com/ethereum/go-ethereum.git
+    version: release/1.3.3
+    update: yes
+    dest: ~/bin/go-ethereum
+
+- shell: export PATH=$PATH:/home/pi/bin/go/bin; export GOROOT=/home/pi/bin/go ; make geth
+  args:
+    chdir: ~/bin/go-ethereum
+    executable: /bin/bash
+
+- shell: sudo cp build/bin/geth /usr/local/bin/
+  args:
+    chdir: ~/bin/go-ethereum
+    executable: /bin/bash
+
+- file:
+    path: ./eth_private_net
+    state: directory
+
+- copy:
+    src: myGenesis.json
+    dest: ./eth_private_net/myGenesis.json
