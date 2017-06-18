@@ -1,0 +1,5 @@
+---
+- hosts: mattermost
+  sudo: yes
+  roles:
+   - mattermost
