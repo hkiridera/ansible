@@ -1,0 +1,5 @@
+---
+- hosts: rpi-docker
+  become: true
+  roles:
+   - rpi-docker
