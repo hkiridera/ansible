@@ -1,0 +1,33 @@
+---
+- name: apt-get install python-pip python-dev
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - python-pip
+    - python-dev
+    - liblapack-dev
+    - gfortran
+  tags:
+    - debug
+
+- name: wget tensorflow package
+  get_url:
+    url: "https://github.com/samjabrahams/tensorflow-on-raspberry-pi/releases/download/v0.11.0/tensorflow-0.11.0-cp27-none-linux_armv7l.whl"
+    dest: /opt/tensorflow-0.11.0-cp27-none-linux_armv7l.whl
+
+- name: pip install tensorflow
+  pip:
+    name: "file://opt/tensorflow-0.11.0-cp27-none-linux_armv7l.whl"
+
+- name: keras
+  pip:
+    name: keras
+
+- name: copy train.py
+  copy:
+    src: trainer.py
+    dest: ~/trainer.py
+    owner: root
+    group: root
+    mode: 0755

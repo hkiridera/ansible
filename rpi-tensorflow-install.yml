@@ -1,0 +1,5 @@
+---
+- hosts: rpi-tensorflow
+  become: true
+  roles:
+   - rpi-tensorflow
