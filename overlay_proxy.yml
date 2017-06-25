@@ -1,0 +1,9 @@
+---
+- hosts: proxy
+  sudo: yes
+  roles:
+   - proxy
+   - tor
+   - overlay_proxy
+  vars_files:
+    - vars/proxy.yml
