@@ -1,0 +1,11 @@
+[test1]
+name=test1
+baseurl=http://192.168.12.251/centos7.1/$basearch/
+gpgcheck=0
+enabled=1
+
+[rpm]
+name=test2
+baseurl=http://192.168.12.251/centos7.1/rpm
+gpgcheck=0
+enabled=1

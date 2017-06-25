@@ -1,0 +1,10 @@
+---
+- name: copy rpm
+  copy:
+    src: zabbix-3.0.5-1.fc26.armv7hl.rpm
+    dest: /var/www/html/centos7.1/rpm/
+
+- name: copy rpm
+  copy:
+    src: httpd-2.4.23-4.fc25.aarch64.rpm
+    dest: /var/www/html/centos7.1/rpm/

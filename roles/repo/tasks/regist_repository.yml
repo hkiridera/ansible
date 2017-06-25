@@ -1,0 +1,9 @@
+---
+- name: create repo
+  shell: createrepo -v  /var/www/html/centos7.1/{{ item }}
+  with_items:
+    - SRPMS
+    - rpm
+    - extra
+    - x86_64
+    - i386

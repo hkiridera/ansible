@@ -1,0 +1,23 @@
+---
+- name: yum install httpd
+  yum:
+    name={{ item }}
+  with_items:
+    - httpd
+    - createrepo
+
+- name: service start httpd
+  service:
+    name: httpd
+    state: restarted
+    enabled: yes
+
+- name: create repository directory
+  file: path=/var/www/html/{{ item }} state=directory mode=0755
+  with_items:
+    - centos7.1
+    - centos7.1/i386
+    - centos7.1/x86_64
+    - centos7.1/SRPMS
+    - centos7.1/rpm
+    - centos7.1/extra

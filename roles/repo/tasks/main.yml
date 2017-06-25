@@ -1,0 +1,5 @@
+---
+- include: install_repository.yml
+- include: test_add_rpm.yml
+- include: regist_repository.yml
+- include: add_sourcelist.yml
