@@ -1,0 +1,7 @@
+---
+- hosts: proxy
+  sudo: yes
+  roles:
+   - proxy
+  vars_files:
+    - vars/proxy.yml

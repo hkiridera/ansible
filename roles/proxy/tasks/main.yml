@@ -1,0 +1,13 @@
+---
+- name: docker deploy squid
+  docker_service:
+    project_name: squid
+    definition:
+      version: '2'
+      services:
+        squid:
+          image: sameersbn/squid
+          ports:
+            - 3128:3128
+          volumes:
+            - "/srv/docker/squid/cache:/var/spool/squid3"
