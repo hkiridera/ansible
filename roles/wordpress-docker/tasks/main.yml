@@ -1,0 +1,24 @@
+---
+- name: docker deploy wordpress
+  docker_service:
+    project_name: wordpress
+    definition:
+      version: '2'
+      services:
+        wordpress:
+          image: wordpress
+          ports:
+            - 80:80
+          environment:
+            - WORDPRESS_DB_PASSWORD=example
+#          volumes:
+#            - /usr/lib/docker/wordpress:/usr/src/wordpress
+#            - /usr/lib/docker/html:/var/www/html
+          depends_on:
+            - mysql
+        mysql:
+          image: mariadb
+          environment:
+            - MYSQL_ROOT_PASSWORD=example
+          volumes:
+            - /usr/lib/docker/mysql:/var/lib/mysql
