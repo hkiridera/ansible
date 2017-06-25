@@ -1,0 +1,6 @@
+---
+- hosts: afibot
+  sudo: yes
+  roles:
+   - apache2
+   - php5
