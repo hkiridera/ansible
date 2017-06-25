@@ -1,0 +1,43 @@
+---
+
+- name: create logstash config directory
+  file:
+    path: /etc/logstash
+    state: directory
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: send config
+  template:
+    src: logstash.conf
+    dest: /etc/logstash/logstash.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: send config
+  copy:
+    src: Dockerfile
+    dest: /tmp/Dockerfile
+    owner: root
+    group: root
+    mode: 0644
+
+- name: docker deploy logstash
+  docker_service:
+    project_name: logstash
+    definition:
+      version: '2'
+      services:
+        logstash:
+          build: /tmp
+          command: "-f /etc/logstash/logstash.conf"
+          hostname: "{{ inventory_hostname }}"
+#          ports:
+#            - "5000:5000"
+          volumes:
+            - "/etc/logstash/logstash.conf:/etc/logstash/logstash.conf:Z"
+            - "/var/log/:/var/log/:Z"
+            - "/opt/stack/logs/:/opt/stack/logs/:Z"
