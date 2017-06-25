@@ -1,0 +1,15 @@
+- name: zabbix-agent-xxl container
+  docker:
+    name: zabbix-agent
+    image: zabbix/zabbix-agent
+    state: started
+    pull: always
+    privileged: true
+    ports:
+    - "10050:10050"
+    volumes:
+    - /:/rootfs
+    env:
+        ZBX_HOSTNAME=192.168.12.252
+        ZBX_SERVER_HOST=192.168.12.253
+        
