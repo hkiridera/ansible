@@ -1,0 +1,48 @@
+---
+- apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - autoconf 
+    - autogen 
+    - libtool 
+    - uthash-dev
+    - libjansson-dev
+    - libsensors4-dev
+    - libmicrohttpd-dev
+    - libcurl4-openssl-dev
+    - libusb-dev
+    - libncurses-dev
+    - libusb-1.0-0-dev
+    - git-core
+    - libevent-dev
+    - uthash-dev
+
+- git:
+    repo: https://github.com/luke-jr/bfgminer.git
+    dest: ~/bfgminer
+    update: no
+  become: no
+
+- shell: ./autogen.sh
+  args:
+    chdir: ~/bfgminer
+    executable: /bin/bash
+  become: no
+
+- shell: ./configure --enable-scrypt --enable-bfsb --enable-jingtian --enable-knc --enable-kncasic --enable-metabank --enable-minergate --enable-minion --enable-titan
+  args:
+    chdir: ~/bfgminer
+    executable: /bin/bash
+  become: no
+
+- shell: make
+  args:
+    chdir: ~/bfgminer
+    executable: /bin/bash
+  become: no
+
+- shell: make install
+  args:
+    chdir: ~/bfgminer
+    executable: /bin/bash

@@ -1,0 +1,5 @@
+---
+- hosts: rpi-bitcoin
+  become: true
+  roles:
+   - rpi-bitcoin
