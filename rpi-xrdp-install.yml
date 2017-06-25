@@ -1,0 +1,5 @@
+---
+- hosts: rpi-xrdp
+  sudo: yes
+  roles:
+   - rpi-xrdp
