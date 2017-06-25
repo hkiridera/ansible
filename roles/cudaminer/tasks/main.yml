@@ -1,0 +1,25 @@
+---
+- apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - freeglut3-dev
+    - build-essential
+    - libx11-dev
+    - libxmu-dev
+    - libxi-dev
+    - libgl1-mesa-glx
+    - libglu1-mesa
+    - libglu1-mesa-dev
+    - libglapi-mesa
+    - libgl1-mesa-dri
+  tags: debug
+
+- name: install cuda
+  apt:
+    deb: http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_8.0.61-1_amd64.deb
+
+- name: install cuda
+  apt:
+    name: cuda
+    update_cache: yes
