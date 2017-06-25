@@ -1,0 +1,61 @@
+---
+#- include: _update_kernel.yml
+
+- name: install python-pip python-dev
+  apt: >
+    name={{ item }}
+    update_cache=yes
+    cache_valid_time=86400
+  environment:
+    DEBIAN_FRONTEND: "noninteractive"
+  with_items:
+    - python-pip
+    - python-dev
+
+- name: install docker-py pip package
+  pip: >
+    name="docker-py"
+
+- name: install apt-key docker
+  apt_key: >
+    keyserver="p80.pool.sks-keyservers.net"
+    id="58118E89F3A912897C070ADBF76221572C52609D"
+
+- name: apt add repository docker
+  apt_repository: repo="deb https://apt.dockerproject.org/repo ubuntu-xenial main"
+
+- name: install docker
+  apt: >
+    name={{ item }}
+    update_cache=yes
+  notify:
+    - create docker group
+    - add user to docker group
+  with_items:
+    - git
+    - build-essential
+    - docker-engine
+
+- name: install docker-compose
+  pip:
+    name: docker-compose
+    version: 1.9.0
+
+- name: update ufw to allow forwarding
+  lineinfile: >
+    dest="/etc/default/ufw"
+    regexp="DEFAULT_FORWARD_POLICY="
+    line='DEFAULT_FORWARD_POLICY="ACCEPT"'
+  notify: reload ufw
+
+- name: Install docker-py
+  pip:
+    name: "docker"
+    version: 2.0.1
+    state: present
+
+- name: Install docker-py
+  pip:
+    name: "docker-py"
+    version: 1.10.6
+    state: present

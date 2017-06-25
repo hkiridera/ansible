@@ -1,0 +1,5 @@
+---
+- hosts: docker
+  sudo: yes
+  roles:
+   - docker
