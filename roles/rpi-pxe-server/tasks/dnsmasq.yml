@@ -1,0 +1,45 @@
+---
+- name: add line
+  lineinfile:
+    dest: /etc/resolv.conf
+    line: "nameserver 192.168.12.1"
+
+- name: resolve -v
+  shell: resolvconf -v
+
+- name: apt-get install dnsmasq tcpdump
+  apt:
+    name={{ item }}
+  with_items:
+    - dnsmasq
+    - tcpdump
+
+- name: rm /etc/resolvconf/update.d/dnsmasq
+  file:
+    path: /etc/resolvconf/update.d/dnsmasq
+    state: absent
+
+- name: config dhnmasq.conf
+  template:
+    src: etc/dnsmasq.conf
+    dest: /etc/dnsmasq.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: mkdir /tftpboot
+  file:
+    path: /tftpboot
+    mode: 0777
+    state: directory
+    owner: root
+    group: root
+
+- name: "shell cp -r /boot/* /tftpboot"
+  shell: "cp -r /boot/* /tftpboot"
+
+- name: systemctl enable dnsmasq.service
+  shell: "{{ item }}"
+  with_items:
+    - systemctl enable dnsmasq.service
+    - systemctl restart dnsmasq.service

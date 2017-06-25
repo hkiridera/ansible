@@ -1,0 +1,7 @@
+---
+- name: add line
+  lineinfile: 
+    dest: /boot/config.txt
+    line: "program_usb_boot_mode=1"
+
+- include: reboot.yml

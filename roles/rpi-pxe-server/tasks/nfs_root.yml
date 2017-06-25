@@ -1,0 +1,37 @@
+---
+- name: add line
+  lineinfile:
+    dest: /etc/resolv.conf
+    line: "nameserver 192.168.12.1"
+
+- name: resolve -v
+  shell: resolvconf -v
+
+- name: install nfs-kernel-server
+  apt:
+    name: nfs-kernel-server
+    update_cache: yes
+
+- name: /etc/exports
+  template:
+    src: etc/exports
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: 0644
+
+- name: restart rpcbind,nfs-kernel-server
+  shell: "{{ item }}"
+  with_items:
+    - systemctl enable rpcbind
+    - systemctl restart rpcbind
+    - systemctl enable nfs-kernel-server
+    - systemctl restart nfs-kernel-server
+
+- name: Edit /tftpboot/cmdline.txt 
+  template:
+    src: tftpboot/cmdline.txt
+    dest: /tftpboot/cmdline.txt
+    owner: root
+    group: root
+    mode: 0755

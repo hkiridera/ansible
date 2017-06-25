@@ -1,0 +1,6 @@
+---
+- include: nfs_server.yml
+- include: reboot.yml
+- include: dnsmasq.yml
+- include: reboot.yml
+- include: nfs_root.yml

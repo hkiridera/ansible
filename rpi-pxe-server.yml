@@ -1,0 +1,6 @@
+---
+- hosts: rpi-pxe-server
+  become: true
+  roles:
+   - rpi-upgrade
+   - rpi-pxe-server

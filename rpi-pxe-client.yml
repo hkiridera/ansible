@@ -1,0 +1,6 @@
+---
+- hosts: rpi-pxe-client
+  become: true
+  roles:
+   - rpi-upgrade
+   - rpi-pxe-client

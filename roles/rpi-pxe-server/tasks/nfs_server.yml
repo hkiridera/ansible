@@ -1,0 +1,31 @@
+---
+- name: mkdir -p /nfs/client1
+  file:
+    path: /nfs/client1
+    state: directory
+    owner: root
+    group: root
+    mode: 0666
+ 
+- name: apt-get install rsync
+  apt:
+    name: rsync
+    update_cache: yes
+
+- name: rsync -xa --progress --exclude /nfs / /nfs/client1
+  command: rsync -xa --progress --exclude /nfs / /nfs/client1
+
+- name: mount /dev /sys /proc
+  shell: "{{ item }}"
+  args:
+    chdir: /nfs/client1
+  with_items:
+    - "mount --bind /dev dev"
+    - "mount --bind /sys sys"
+    - "mount --bind /proc proc"
+    - "chroot ."
+    - "rm /etc/ssh/ssh_host_*"
+    - "dpkg-reconfigure openssh-server"
+    - "sudo umount dev"
+    - "sudo umount sys"
+    - "sudo umount proc"
