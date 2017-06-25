@@ -1,0 +1,29 @@
+---
+- apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - libboost-all-dev
+    - gcc
+    - screen
+    - autoconf 
+    - autogen 
+    - automake
+    - libtool 
+    - uthash-dev
+    - libjansson-dev
+    - libsensors4-dev
+    - libmicrohttpd-dev
+    - libcurl4-openssl-dev
+    - libusb-dev
+    - libncurses-dev
+    - libusb-1.0-0-dev
+    - libcurl4-openssl-dev
+    - git-core
+    - libncurses5-dev
+    - libevent-dev
+    - uthash-dev
+    - yasm
+
+- apt:
+    deb: https://minergate.com/download/deb-cli

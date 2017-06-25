@@ -1,0 +1,5 @@
+---
+- hosts: rpi-monerocoin
+  become: true
+  roles:
+   - rpi-monerocoin
