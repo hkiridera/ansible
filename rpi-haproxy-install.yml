@@ -1,0 +1,5 @@
+---
+- hosts: rpi-haproxy
+  become: yes
+  roles:
+   - rpi-haproxy
