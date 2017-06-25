@@ -1,0 +1,5 @@
+---
+- hosts: plant_factory
+  sudo: yes
+  roles:
+   - plant_factory
