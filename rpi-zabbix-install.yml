@@ -1,0 +1,5 @@
+---
+- hosts: rpi-zabbix
+  become: true
+  roles:
+   - rpi-zabbix
