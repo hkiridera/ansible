@@ -1,0 +1,49 @@
+---
+- name: install NVIDIA Driver
+  apt_repository:
+    repo: ppa:graphics-drivers/ppa
+
+#- name: install cuda
+#  apt:
+#    deb: https://developer.nvidia.com/compute/cuda/8.0/prod/local_installers/cuda-repo-ubuntu1404-8-0-local_8.0.44-1_amd64-deb
+
+- name: install nvidia-346
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - build-essential
+    - nvidia-346
+    - git
+    - curl
+ 
+- name: curl -fsSL https://get.docker.com/ | sh
+  shell: curl -fsSL https://get.docker.com/ | sh
+  ignore_errors: yes
+
+- name: install nvidia-docker
+  apt:
+    deb: https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.0/nvidia-docker_1.0.0-1_amd64.deb
+
+- name: start nvidia-docker
+  service:
+    name: nvidia-docker
+    state: restarted
+
+- name: install python-pip python-dev
+  apt: >
+    name={{ item }}
+    update_cache=yes
+    cache_valid_time=86400
+  with_items:
+    - python-pip
+    - python-dev
+
+- name: install docker-compose
+  pip:
+    name: docker-compose
+    version: 1.9.0
+
+- name: install nvidia-docker-compose
+  pip:
+    name: nvidia-docker-compose

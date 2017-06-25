@@ -1,0 +1,5 @@
+---
+- hosts: nvidia-docker
+  sudo: yes
+  roles:
+   - nvidia-docker
