@@ -1,0 +1,21 @@
+---
+- name: Create wordpress databases
+  mysql_db: >
+    name={{ item.value.db_name }}
+    state=present
+    encoding=utf8
+    login_user=root
+    login_password=password
+  with_dict: "{{ db }}"
+
+- name: Create wordpress database user
+  mysql_user: >
+    login_user=root
+    login_password=password
+    priv={{ item.value.db_name }}.*:ALL,GRANT
+    name={{ item.value.db_user }}
+    password={{ item.value.db_password }}
+    host={{ item.value.db_accsess_host }}
+  with_dict: "{{ db }}"
+
+#    login_password={{ item.value.mysql_root_passwd }}

@@ -1,0 +1,5 @@
+---
+- name: start "{{ web_server_type }}"
+  service:
+    name: "{{ web_server_type }}"
+    state: restarted

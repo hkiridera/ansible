@@ -1,0 +1,14 @@
+---
+- include: install_wordpress.yml
+  tags: main
+- include: restart.yml
+  tags:
+    - main
+    - restart
+#- include: setup_mysql.yml
+- include: install_plugin.yml
+  tags: plugin
+- include: install_theme.yml
+  tags: theme
+- include: install_language.yml
+  tags: language

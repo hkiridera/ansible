@@ -1,0 +1,5 @@
+---
+- hosts: rpi-wordpress-mysql
+  become: true
+  roles:
+   - rpi-wordpress-mysql

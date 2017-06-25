@@ -1,0 +1,98 @@
+---
+- name: Theme install
+  unarchive:
+    src=var/www/html/wp-content/themes/{{ item }}
+    dest=/var/www/html/wp-content/themes/
+    owner=www-data
+    group=www-data
+    mode=0755
+  with_items:
+    - activetab.3.2.zip
+    - alchem.1.3.4.zip
+    - arcade-basic.1.0.10.zip
+    - carton.1.0.6.zip
+    - custom-community.2.1.2.zip
+    - customizr.3.4.34.zip
+    - destin-basic.1.0.3.zip
+    - eco-gray.1.7.6.zip
+    - evolve.3.6.4.zip
+    - exhibit.1.04.zip
+    - farben-basic.1.0.5.zip
+    - firmasite.1.5.3.zip
+    - forefront.1.0.4.zip
+    - freelancer.0.6.zip
+    - generatepress.1.3.40.zip
+    - gk-portfolio.1.5.3.zip
+    - graftee.1.1.37.zip
+    - gridiculous.1.1.0.zip
+    - gridster-lite.1.0.7.1.zip
+    - hueman.3.2.10.zip
+    - jbst-1pxdeep.1.0.1.zip
+    - jbst-masonary.1.0.4.zip
+    - level.1.1.zip
+    - magazine-basic.3.0.7.zip
+    - magazine-style.1.7.2.zip
+    - make.1.7.9.zip
+    - mantle.1.2.33.zip
+    - matheson.1.0.4.zip
+    - mesocolumn.1.6.5.1.zip
+    - mixed.1.0.2.zip
+    - national-basic.1.0.5.zip
+    - neo-trendy.1.0.4.1.zip
+    - neo-zee.2.2.12.1.zip
+    - onetone.1.9.1 (1).zip
+    - onetone.1.9.1.zip
+    - plain-jane.2.1.zip
+    - profile.1.1.zip
+    - profit-lite.1.4.3.zip
+    - quest.1.5.0.2.zip
+    - republic.1.1.zip
+    - rookie.1.4.1.zip
+    - rtpanel.4.1.6.zip
+    - simple-portal.3.1.zip
+    - simplicity2.3.2b.zip
+    - social-magazine.1.9.1.zip
+    - statement.0.5.zip
+    - surfarama.1.1.1.zip
+    - tienda-basic.1.0.2.zip
+    - ward.1.0.7.zip
+    - xeory_base.zip
+    - xeory_extension (1).zip
+    - xmax.1.0.5.zip
+    - 1467424363wpdm_wp_material.zip
+    - chooko-lite.1.2.7.zip
+    - flat.1.7.6.zip
+    - flat-boat.1.0.2.zip
+    - green-garden.1.9.zip
+    - sela.1.0.15.zip
+    - responsiveboat.1.1.4.zip
+    - together.1.0.4.zip
+    - zerius.1.0.9.zip
+    - kotenhanagara.2.5.6.zip
+    - total.1.1.2.zip
+    - rock-star.1.0.zip
+    - dream-spa.1.2.6.zip
+    - supernews.1.0.6.zip
+    - supermag.1.3.3.zip
+    - accesspress-mag.2.4.5.zip
+    - bluestreet.1.1.5.zip
+    - eightlaw-lite.1.0.06.zip
+    - bistro.1.0.zip
+    - bizroot.1.1.2.zip
+    - spiderprime.1.0.6.zip
+    - metro-magazine.1.0.4.zip
+    - scoreline.0.8.zip
+    - sydney.1.30.zip
+    - wallstreet.1.7.1.zip
+    - spasalon.1.7.6.zip
+    - jbst.2.1.0.zip
+    - twentythirteen.2.0.zip
+    - zerif-lite.zip
+    - electa.1.3.02.zip
+    - wp-portfolio.1.0.6.zip
+    - morphology-lite.1.1.10.zip
+    - protopress.1.0.1.2.zip
+    - gambit.zip
+    - tortuga.1.1.5.zip
+    - worldstar.1.0.6.zip
+    - napoli.1.0.6.zip

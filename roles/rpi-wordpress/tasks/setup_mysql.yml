@@ -1,0 +1,10 @@
+#---
+#- name: wp-config.php db_name
+#  shell: sed -i -e "s/database_name_here/{{ db_name }}/" /var/www/html/wp-config.php
+#  changed_when: false
+#- name: wp-config.php db_user
+#  shell: sed -i -e "s/username_here/{{ db_user }}/" /var/www/html/wp-config.php
+#  changed_when: false
+#- name: wp-config.php db_password
+#  shell: sed -i -e "s/password_here/{{ db_password }}/" /var/www/html/wp-config.php
+#  changed_when: false

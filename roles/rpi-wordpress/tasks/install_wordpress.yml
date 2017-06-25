@@ -1,0 +1,125 @@
+---
+- name: mount NAS
+  lineinfile:
+    dest=/etc/fstab
+   line="192.168.12.3:/FS01/document/wordpress/uploads /var/www/html/wp-content/uploads nfs nolock,vers=3,rw,hard,bg,intr"
+
+#- name: stop web service
+#  service:
+#    name: "{{ item }}"
+#    state: stopped
+#  with_items:
+#    - apache2
+#    - nginx
+#  ignore_errors: yes
+
+- name: Install python-dev python-setuptools
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    force: yes
+  with_items:
+    - python-dev
+    - python-setuptools
+    - "{{ web_server_type }}"
+
+- name: Install php nginx
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - libmysqlclient-dev
+    - php5
+    - php5-fpm
+    - php5-cgi
+    - php5-cli
+    - php5-common
+    - php5-mysql
+    - php5-fpm
+    - mysql-client
+    - curl
+    - libcurl3
+    - php5-curl
+    - php5-gd
+    - libjpeg-progs
+    - optipng
+    - gifsicle
+    - imagemagick
+    
+
+- name: install libapache2-mod-php5
+  apt:
+    name: libapache2-mod-php5
+  when:
+    - web_server_type == "apache2"
+
+- name: Install pip
+  easy_install: name=pip
+
+- name: Install python-apt MySQL-python
+  pip: 
+    name: "{{ item }}"
+  with_items:
+    - python-apt
+    - mysql-python
+
+- name: /usr/sbin/a2enmod rewrite
+  command: /usr/sbin/a2enmod rewrite
+  when:
+    - web_server_type == "apache2"
+
+- name: mkdir /var/www/html/
+  file: path=/var/www/html/ owner=www-data group=www-data mode=755 state=directory recurse=yes
+  ignore_errors: true
+
+- name: copy apache2.conf
+  copy: 
+    src: etc/apache2/apache2.conf
+    dest: /etc/apache2/apache2.conf
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - web_server_type == "apache2"
+
+- name: copy nginx.conf
+  template: 
+    src: default
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - web_server_type == "nginx"
+
+- name: copy timeout.conf
+  copy:
+    src: etc/nginx/conf.d/timeout.conf
+    dest: /etc/nginx/conf.d/timeout.conf
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - web_server_type == "nginx"
+
+- name: wget latest-wordpress.zip
+  get_url: url=https://ja.wordpress.org/latest-ja.zip dest={{ tmp }}/wordpress.zip
+
+- name: unzip wordpress.zip
+  shell: unzip -o -d /var/www/html/ {{ tmp }}/wordpress.zip && mv -f /var/www/html/wordpress/* /var/www/html/ && rm -rf /var/www/html/wordpress creates=/var/www/html/wp-login.php && chown www-data:www-data -R /var/www/html/
+
+- name: cp wp-config.php
+  template:
+    src=wp-config-sample.php
+    dest=/var/www/html/wp-config.php
+
+- name: remove index.html
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /var/www/html/admin-login.php
+    - /var/www/html/index.html
+  tags:
+    - debug
+

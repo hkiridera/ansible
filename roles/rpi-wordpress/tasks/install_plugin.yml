@@ -1,0 +1,60 @@
+---
+- name: Plugin install
+  unarchive:
+    src=var/www/html/wp-content/plugins/{{ item }}
+    dest=/var/www/html/wp-content/plugins/
+    owner=www-data
+    group=www-data
+    mode=0755
+  with_items:
+    - auto-post-thumbnail.3.4.0.zip
+    - feedwordpress.2016.0420.zip
+    - photo-express-for-google.zip
+    - external-featured-image.1.4.4.zip
+    - stealth-login-page.4.0.0.zip
+    - google-analytics-for-wordpress.5.5.4.zip
+    - wordpress-popular-posts.3.3.4.zip
+    - buddypress.2.7.2.zip
+    - bbpress.2.5.10.zip
+    - buddypress-media.4.1.8.zip
+    - amazon-s3-and-cloudfront.1.1.2.zip
+    - amazon-web-services.1.0.zip
+    - ads-by-datafeedrcom.1.0.11.zip
+    - add-to-any.1.7.1.zip
+    - attitude.3.0.7.zip
+    - fukasawa.1.10.zip
+    - event-organiser.3.1.6.zip
+    - events-manager.5.6.6.1.zip
+    - buddypress-activity-plus.1.6.4.zip
+    - buddystream.zip
+    - cd-bp-avatar-bubble.2.7.1.zip
+    - buddypress-sitemap-generator.0.0.4.zip
+    - oembed-for-buddypress.0.52.zip
+    - wp-slimstat.4.4.5.zip
+    - google-sitemap-generator.4.0.8.zip
+    - wp-mail-smtp.0.9.6.zip
+    - contact-form-7.4.5.1.zip
+    - backwpup.3.3.4.zip
+    - login-rebuilder.zip
+    - slack.0.5.1.zip
+    - remote-images-grabber.0.6.zip
+    - ewww-image-optimizer.3.1.3.zip
+    - wiki-on-medal.1.2.0.zip
+    - yada-wiki.2.7.zip
+    - shortcode-star-rating.zip
+    - comment-rating-field-plugin.zip
+    - wp-postratings.1.84.1.zip
+    - wp-product-review.zip
+    - wordpress-23-related-posts-plugin.3.6.3.zip
+    - siteorigin-panels.2.4.21.zip
+    - themezee-toolkit.1.0.5.zip
+    - so-widgets-bundle.1.7.2.zip 
+    - disable-xml-rpc-pingback.1.1.zip
+    - limit-login-attempts.1.7.1.zip
+    - wp-ban.1.69.zip
+    - pubsubhubbub.1.7.2.zip
+    - wordpress-seo.4.0.2.zip
+    - clink.zip
+    - wp-html-compression.zip
+    - async-js-and-css.zip
+    - head-cleaner.1.4.4.zip

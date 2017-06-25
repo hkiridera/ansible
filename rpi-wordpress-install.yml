@@ -1,0 +1,5 @@
+---
+- hosts: rpi-wordpress
+  become: true
+  roles:
+   - rpi-wordpress

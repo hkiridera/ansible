@@ -1,0 +1,10 @@
+---
+- name: Plugin install
+  copy:
+    src=var/www/html/wp-content/languages/{{ item }}
+    dest=/var/www/html/wp-content/languages/
+    owner=www-data
+    group=www-data
+    mode=0755
+  with_items:
+    - buddypress-ja.mo

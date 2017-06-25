@@ -1,0 +1,52 @@
+---
+- name: mount NAS
+  lineinfile:
+    dest=/etc/fstab
+    line="192.168.12.3:/FS01/document/mysql /var/lib/mysql nfs nolock,vers=3,rw,hard,bg,intr"
+
+- name: install mysql-server
+  apt:
+    name: mysql-server
+    update_cache: yes
+  
+- name: Set mysql config
+  template:
+    src=my.cnf
+    dest=/etc/mysql/my.cnf
+    owner=root
+    group=root
+    mode=0644
+
+- name: start mysql
+  service: name=mysql state=restarted enabled=yes
+ 
+- name: set MySQL root password
+  command: |
+    mysql -e "set password for root@'{{ item }}' = PASSWORD('{{ mysql_root_passwd }}')" creates=/root/.my.cnf
+  with_items:
+    - localhost
+  ignore_errors: True
+ 
+- name: Install setuptools
+  apt: name=python-dev
+- name: Install setuptools
+  apt: name=python-setuptools
+ 
+- name: Install pip
+  easy_install: name=pip
+ 
+- name: Install python-apt
+  pip: name=python-apt
+ 
+- name: Install libmysqlclient-dev
+  apt: name=libmysqlclient-dev
+ 
+- name: pip install MySQL-python
+  pip: name=MySQL-python
+
+- name: service restart mysql
+  service:
+    name=mysql
+    state=restarted
+
+- include: create_db.yml
