@@ -1,0 +1,5 @@
+---
+- hosts: rpi-litecoin
+  become: true
+  roles:
+   - rpi-litecoin

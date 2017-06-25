@@ -1,0 +1,56 @@
+---
+- apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - screen
+    - autoconf 
+    - autogen 
+    - automake
+    - libtool 
+    - uthash-dev
+    - libjansson-dev
+    - libsensors4-dev
+    - libmicrohttpd-dev
+    - libcurl4-openssl-dev
+    - libusb-dev
+    - libncurses-dev
+    - libusb-1.0-0-dev
+    - libcurl4-openssl-dev
+    - git-core
+    - libncurses5-dev
+    - libevent-dev
+    - uthash-dev
+    - yasm
+
+######### cpuminer
+
+- git:
+    repo: https://github.com/pooler/cpuminer.git
+    dest: ~/cpuminer
+    update: no
+  become: no
+
+- shell: ./autogen.sh
+  args:
+    chdir: ~/cpuminer
+    executable: /bin/bash
+  become: no
+
+- shell: ./configure CFLAGS="-O3"
+  args:
+    chdir: ~/cpuminer
+    executable: /bin/bash
+  become: no
+
+- shell: make
+  args:
+    chdir: ~/cpuminer
+    executable: /bin/bash
+  become: no
+
+- shell: sudo cp minerd /usr/sbin/
+  args:
+    chdir: ~/cpuminer
+    executable: /bin/bash
+  ignore_errors: yes
