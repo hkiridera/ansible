@@ -1,0 +1,5 @@
+---
+- name: install iceweasel
+  apt:
+    name: iceweasel
+    update_cache: yes

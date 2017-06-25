@@ -1,0 +1,8 @@
+---
+- include: set-hosts.yml
+- include: set-ssh-config.yml
+- include: set-fstab.yml
+#- include: set-lang.yml
+- include: set-swapoff.yml
+- include: install-xrdp.yml
+- include: install-iceweasel.yml

@@ -1,0 +1,4 @@
+---
+- name: command swapoff -a
+  command: swapoff -a
+  changed_when: False

@@ -1,0 +1,17 @@
+---
+
+- name: create .ssh directory
+  file: >
+    path=~/.ssh
+    state=directory
+    owner=root
+    group=root
+    mode=0700
+  
+- name: set .ssh/config
+  copy: >
+    src=./etc/ssh/ssh_config
+    dest={{ item }}
+    mode=0644
+  with_items:
+    - /etc/ssh/ssh_config

@@ -1,0 +1,12 @@
+- name: install language-pack-ja-base ibus-mozc language-pack-ja
+  apt: >
+    name={{ item }}
+    update_cache=yes
+    cache_valid_time=86400
+  with_items:
+    - language-pack-ja-base
+    - language-pack-ja
+    - ibus-mozc
+
+- name: update-locale LANG=ja_JP.UTF-8 LANGUAGE="ja_JP:ja" 
+  command: update-locale LANG=ja_JP.UTF-8 LANGUAGE="ja_JP:ja" 

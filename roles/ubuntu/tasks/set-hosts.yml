@@ -1,0 +1,9 @@
+---
+- name: set hosts
+  template:
+    src: ./etc/hosts
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0644
+    

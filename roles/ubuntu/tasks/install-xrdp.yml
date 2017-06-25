@@ -1,0 +1,27 @@
+---
+- name: install xrdp
+  apt:
+    name: xrdp
+    update_cache: yes
+
+- name: install xrdp
+  apt:
+    name: lxde
+    update_cache: yes
+
+- name: Create File
+  file:
+    path: ~/.xsession
+    state: touch
+  become: no
+
+- name: lxsession -s LXDE -e LXDE > ~/.xsession
+  lineinfile:
+    dest: ~/.xsession
+    line: lxsession -s LXDE -e LXDE
+  become: false
+
+- name: xrdp restart
+  service:
+    name: xrdp
+    state: restarted

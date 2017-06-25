@@ -1,0 +1,10 @@
+#---
+#- name: mount NAS
+#  lineinfile:
+#    dest=/etc/fstab
+#    line="192.168.12.3:/data/document/mysql /var/lib/mysql nfs nolock,vers=3,rw,hard,bg,intr"
+
+#- name: mount NAS
+#  lineinfile:
+#    dest=/etc/fstab
+#   line="192.168.12.3:/data/document/wordpress/uploads /var/www/html/wp-content/uploads nfs nolock,vers=3,rw,hard,bg,intr"
