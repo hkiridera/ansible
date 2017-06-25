@@ -1,0 +1,24 @@
+---
+- name: apt-get update
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: copy install script
+  copy:
+    src={{ item }}
+    dest={{ item }}
+  with_items:
+    - ./encord_install.sh
+    - ./encord.sh
+
+- name: install ffmpeg
+  script: encord_install.sh
+
+- name: create NAS mount point
+  file:
+    path={{ item }}
+    state=directory
+    mode=0755
+  with_items:
+    - /mnt/nas

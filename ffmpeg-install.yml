@@ -1,0 +1,5 @@
+---
+- hosts: ffmpeg
+  sudo: yes
+  roles:
+   - ffmpeg
