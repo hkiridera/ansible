@@ -1,0 +1,10 @@
+---
+- name: apt-get install rpi-update
+  apt:
+    name: rpi-update
+    update_cache: yes
+
+- name: BRANCH=next rpi-update
+  command: "rpi-update"
+  environment:
+    BRANCH: next

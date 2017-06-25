@@ -1,0 +1,3 @@
+---
+- include: os_upgrade.yml
+- include: reboot.yml
