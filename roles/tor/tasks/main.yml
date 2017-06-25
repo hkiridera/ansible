@@ -1,0 +1,11 @@
+---
+- name: docker deploy tor
+  docker_service:
+    project_name: tor
+    definition:
+      version: '2'
+      services:
+        tor:
+          image: nagev/tor
+          ports:
+            - 9150:9150

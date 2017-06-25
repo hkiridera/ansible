@@ -1,0 +1,5 @@
+---
+- hosts: tor
+  sudo: yes
+  roles:
+   - tor
