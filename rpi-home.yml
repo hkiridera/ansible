@@ -1,0 +1,5 @@
+---
+- hosts: rpi-home
+  become: yes
+  roles:
+   - rpi-home
