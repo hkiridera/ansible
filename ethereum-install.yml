@@ -1,0 +1,5 @@
+---
+- hosts: ethereum
+  become: true
+  roles:
+   - ethereum
