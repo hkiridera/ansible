@@ -1,0 +1,3 @@
+---
+- include: install_ipfs.yml
+#- include: init_ipfs.yml

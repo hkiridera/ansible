@@ -1,0 +1,8 @@
+---
+- name: Extract go-ipfs_v0.4.10_linux-arm.tar.gz /usr/local/bin/ipfs
+  unarchive:
+    src: go-ipfs_v0.4.10_linux-arm.tar.gz
+    dest: ~/
+
+- name: go-ipfs/ipfs /usr/local/bin/ipfs
+  command: cp ~/go-ipfs/ipfs /usr/local/bin/ipfs

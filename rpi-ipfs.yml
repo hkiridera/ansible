@@ -1,0 +1,5 @@
+---
+- hosts: rpi-ipfs
+  become: true
+  roles:
+   - rpi-ipfs

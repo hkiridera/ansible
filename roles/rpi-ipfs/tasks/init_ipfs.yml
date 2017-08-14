@@ -1,0 +1,3 @@
+---
+- command: ipfs init
+  ignore_errors: yes
