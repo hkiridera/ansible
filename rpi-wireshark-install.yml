@@ -1,0 +1,5 @@
+---
+- hosts: rpi-wireshark
+  become: true
+  roles:
+   - rpi-wireshark
