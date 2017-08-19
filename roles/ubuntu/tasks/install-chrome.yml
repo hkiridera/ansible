@@ -1,0 +1,5 @@
+---
+- apt:
+    name: chromium-browser
+    update_cache: yes
+
