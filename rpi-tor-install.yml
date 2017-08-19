@@ -1,0 +1,5 @@
+---
+- hosts: rpi-tor
+  become: yes
+  roles:
+   - rpi-tor

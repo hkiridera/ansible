@@ -1,0 +1,31 @@
+---
+# tasks file for rpi-tor
+
+- name: apt install tor
+  apt:
+    name: tor
+    update_cache: yes
+
+- name: copy torrc
+  copy:
+    src: torrc
+    dest: /etc/tor/torrc
+    owner: root
+    group: root
+
+- name: copy torsocks.conf
+  copy:
+    src: torsocks.conf
+    dest: /etc/tor/torsocks.conf
+    owner: root
+    group: root
+
+- name: copy zshrc
+  copy:
+    src: zshrc
+    dest: ~./zshrc
+
+- name: tor restart
+  service:
+    name: tor
+    state: restarted
