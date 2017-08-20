@@ -22,8 +22,8 @@
 
 - name: copy zshrc
   copy:
-    src: zshrc
-    dest: ~./zshrc
+    src: .zshrc
+    dest: ~/.zshrc
 
 - name: tor restart
   service:

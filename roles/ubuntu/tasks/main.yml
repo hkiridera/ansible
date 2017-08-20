@@ -6,3 +6,5 @@
 - include: set-swapoff.yml
 - include: install-xrdp.yml
 - include: install-iceweasel.yml
+- include: install-chrome.yml
+- include: set-torproxy.yml
