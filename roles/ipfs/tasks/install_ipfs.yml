@@ -1,7 +1,7 @@
 ---
-- name: Extract go-ipfs_v0.4.10_windows-amd64.zip /usr/local/bin/ipfs
+- name: Extract go-ipfs_v0.4.10_linux-amd64.tar.gz /usr/local/bin/ipfs
   unarchive:
-    src: go-ipfs_v0.4.10_windows-amd64.zip
+    src: go-ipfs_v0.4.10_linux-amd64.tar.gz
     dest: ~/
 
 - name: go-ipfs/ipfs /usr/local/bin/ipfs
